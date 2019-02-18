@@ -8,11 +8,11 @@ import javax.persistence.*;
 public class Application implements ApplicationDTO {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "application_id")
 	private Long application_id;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
 	private User user;
 	
@@ -61,6 +61,7 @@ public class Application implements ApplicationDTO {
 	public Date getApplication_date() {
 		return application_date;
 	}
+
 
 	@Override
 	public ApprovalStatus getApplication_status() {

@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 
 /**
  * A functional library of utility methods.
+ * @author Leif Lindbäck
  */
 public class Util {
     private Util() {}

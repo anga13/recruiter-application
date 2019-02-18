@@ -50,6 +50,13 @@ class BusinessIdGenerator {
         return randomNoGenerator.nextLong();
     }
 
+    long generateCompetence_id() {
+        return randomNoGenerator.nextLong();
+    }
+    
+    long generateRoleId() {
+        return randomNoGenerator.nextLong();
+    }
     /**
      * Generates a unique holder number.
      *

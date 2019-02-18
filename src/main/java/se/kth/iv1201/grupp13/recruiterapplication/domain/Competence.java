@@ -10,7 +10,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 public class Competence implements CompetenceDTO {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "competence_id")
 	private Long competence_id;
 
@@ -34,7 +34,7 @@ public class Competence implements CompetenceDTO {
      */
     public Competence(String name) {	       
         this.name = name;
-        competence_id = BeanFactory.getBean(BusinessIdGenerator.class).generatePerson_id();
+        competence_id = BeanFactory.getBean(BusinessIdGenerator.class).generateCompetence_id();
     }
 
 	
@@ -43,6 +43,7 @@ public class Competence implements CompetenceDTO {
         return Util.toString(this);
     }
 
+    
 	@Override
 	public Long getCompetence_id() {
 		return competence_id;

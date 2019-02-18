@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Availability implements AvailabilityDTO {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "availability_id")
 	private Long availability_id;
 
