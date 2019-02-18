@@ -16,7 +16,7 @@ public interface UserDTO {
 
 	public String getPassword();
 
-	public Role getRole();
+	public RoleDTO getRole();
 
 	public String getUsername();
 

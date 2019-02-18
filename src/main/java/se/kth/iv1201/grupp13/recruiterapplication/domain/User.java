@@ -13,7 +13,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 public class User implements UserDTO {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "person_id")
 	private Long person_id;
 	
@@ -34,7 +34,7 @@ public class User implements UserDTO {
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id")
-	private Role role;
+	private RoleDTO role;
 
 	@Column(name = "username")
 	private String username;	
@@ -44,6 +44,7 @@ public class User implements UserDTO {
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private Set<Availability> availabilities = new HashSet<>();
+    
 
     /**
      * Returns a set containing all competence profiles owned by this user.
@@ -109,7 +110,7 @@ public class User implements UserDTO {
      * @param username The user's user name. 
      * 
      */
-    public User(String name, String surname, String ssn, String email, String password, Role role, String username) {	       
+    public User(String name, String surname, String ssn, String email, String password, RoleDTO role, String username) {	       
 		this.name = name;
         this.surname = surname;
         this.ssn = ssn;
@@ -170,11 +171,11 @@ public class User implements UserDTO {
 		this.password = password;
 	}
     @Override
-	public Role getRole() {
+	public RoleDTO getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(RoleDTO role) {
 		this.role = role;
 	}
     @Override
@@ -189,7 +190,7 @@ public class User implements UserDTO {
 
     @Override
     public int hashCode() {
-        return Long.valueOf(person_id).hashCode();
+        return person_id.hashCode();
     }
 
     @Override
@@ -198,7 +199,7 @@ public class User implements UserDTO {
             return false;
         }
         User other = (User)object;
-        return this.person_id == other.person_id;
+        return this.person_id.equals(other.person_id);
     }
 
     @Override
