@@ -15,7 +15,7 @@ public class User implements UserDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "person_id")
-	private Long person_id;
+	private Long personId;
 	
 	@Column(name = "name")
 	private String name;
@@ -34,15 +34,15 @@ public class User implements UserDTO {
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id")
-	private RoleDTO role;
+	private Role role;
 
 	@Column(name = "username")
 	private String username;	
 	
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    private Set<CompetenceProfile> competence_profiles = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<CompetenceProfile> competenceProfiles = new HashSet<>();
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Availability> availabilities = new HashSet<>();
     
 
@@ -50,20 +50,16 @@ public class User implements UserDTO {
      * Returns a set containing all competence profiles owned by this user.
      */
     @Override    
-    public Set<CompetenceProfileDTO> getCompetence_profiles() {
-        Set<CompetenceProfileDTO> copyOfProfs = new HashSet<>();
-        copyOfProfs.addAll(competence_profiles);
-        return copyOfProfs;
+    public Set<CompetenceProfile> getCompetenceProfiles() {
+        return competenceProfiles;
 	}
 
     /**
      * Returns a set containing all availabilities owned by this user.
      */
     @Override    
-    public Set<AvailabilityDTO> getAvailabilities() {
-        Set<AvailabilityDTO> copyOfAvlas = new HashSet<>();
-        copyOfAvlas.addAll(availabilities);
-        return copyOfAvlas;
+    public Set<Availability> getAvailabilities() {
+        return availabilities;
 	}
     
     /**
@@ -74,7 +70,7 @@ public class User implements UserDTO {
      * @param compro The competence profile to add to this user's competence profiles.
      */
     public void addCompetenceProfile(CompetenceProfile compro) {
-    	competence_profiles.add(compro);
+    	competenceProfiles.add(compro);
     }
 
     /**
@@ -95,7 +91,7 @@ public class User implements UserDTO {
 	}
 	
     /**
-     * <p>Creates a new instance with the specified person_id, name, 
+     * <p>Creates a new instance with the specified personId, name, 
      * surname, ssn, email, password, role and username. </p>
      *
      * <p>A unique person id will be set on the newly created
@@ -110,7 +106,7 @@ public class User implements UserDTO {
      * @param username The user's user name. 
      * 
      */
-    public User(String name, String surname, String ssn, String email, String password, RoleDTO role, String username) {	       
+    public User(String name, String surname, String ssn, String email, String password, Role role, String username) {	       
 		this.name = name;
         this.surname = surname;
         this.ssn = ssn;
@@ -118,17 +114,17 @@ public class User implements UserDTO {
         this.password = password;
         this.role = role;
         this.username = username;
-        person_id = BeanFactory.getBean(BusinessIdGenerator.class).generatePerson_id();
+        personId = BeanFactory.getBean(BusinessIdGenerator.class).generatePersonId();
     }
 
 
     @Override	
-    public Long getPerson_id() {
-		return person_id;
+    public Long getPersonId() {
+		return personId;
 	}
 
-	public void setPerson_id(Long person_id) {
-		this.person_id = person_id;
+	public void setPersonId(Long personId) {
+		this.personId = personId;
 	}
     @Override
 	public String getName() {
@@ -171,11 +167,11 @@ public class User implements UserDTO {
 		this.password = password;
 	}
     @Override
-	public RoleDTO getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(RoleDTO role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
     @Override
@@ -190,7 +186,7 @@ public class User implements UserDTO {
 
     @Override
     public int hashCode() {
-        return person_id.hashCode();
+        return personId.hashCode();
     }
 
     @Override
@@ -199,7 +195,7 @@ public class User implements UserDTO {
             return false;
         }
         User other = (User)object;
-        return this.person_id.equals(other.person_id);
+        return this.personId.equals(other.personId);
     }
 
     @Override

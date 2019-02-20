@@ -12,7 +12,7 @@ public class Competence implements CompetenceDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "competence_id")
-	private Long competence_id;
+	private Long competenceId;
 
 	@Column(name = "name")
 	private String name;
@@ -34,7 +34,7 @@ public class Competence implements CompetenceDTO {
      */
     public Competence(String name) {	       
         this.name = name;
-        competence_id = BeanFactory.getBean(BusinessIdGenerator.class).generateCompetence_id();
+        competenceId = BeanFactory.getBean(BusinessIdGenerator.class).generateCompetenceId();
     }
 
 	
@@ -45,8 +45,8 @@ public class Competence implements CompetenceDTO {
 
     
 	@Override
-	public Long getCompetence_id() {
-		return competence_id;
+	public Long getCompetenceId() {
+		return competenceId;
 	}
 
 	@Override
@@ -54,8 +54,8 @@ public class Competence implements CompetenceDTO {
 		return name;
 	}
 
-	public void setCompetence_id(Long competence_id) {
-		this.competence_id = competence_id;
+	public void setCompetenceId(Long competence_id) {
+		this.competenceId = competence_id;
 	}
 
 	public void setName(String name) {

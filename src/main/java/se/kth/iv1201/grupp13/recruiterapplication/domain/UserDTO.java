@@ -4,7 +4,7 @@ import java.util.Set;
 
 public interface UserDTO {
 
-    public Long getPerson_id();
+    public Long getPersonId();
 
 	public String getName();
 
@@ -20,7 +20,7 @@ public interface UserDTO {
 
 	public String getUsername();
 
-	Set<CompetenceProfileDTO> getCompetence_profiles();
+	Set<CompetenceProfile> getCompetenceProfiles();
 
-	Set<AvailabilityDTO> getAvailabilities();
+	Set<Availability> getAvailabilities();
 }

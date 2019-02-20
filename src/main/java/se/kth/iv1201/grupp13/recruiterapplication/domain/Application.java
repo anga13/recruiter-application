@@ -1,6 +1,9 @@
 package se.kth.iv1201.grupp13.recruiterapplication.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,11 +20,11 @@ public class Application implements ApplicationDTO {
 	private User user;
 	
 	@Column(name = "application_date")
-	private Date application_date;
+	private Date applicationDate;
 	
-    
-	@Column(name = "application_status")
-	private ApprovalStatus application_status;    
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)    
+	@JoinColumn(name = "approvalStatus")
+	private ApprovalStatus approvalStatus; 
 	
     /**
      * Required by JPA, should not be used.
@@ -38,13 +41,13 @@ public class Application implements ApplicationDTO {
      *
      * @param user  The applicant.
      * @param application_date The application date.
-     * @param application_status The application status.     
+     * @param approvalStatus The application status.     
      * 
      */
-    public Application(User user, Date application_date, ApprovalStatus application_status) {	       
+    public Application(User user, Date application_date, ApprovalStatus approvalStatus) {	       
         this.user = user;
-        this.application_date = application_date;
-        this.application_status=application_status;
+        this.applicationDate = application_date;
+        this.approvalStatus=approvalStatus;
         application_id = BeanFactory.getBean(BusinessIdGenerator.class).generateApplicationId();
     }
 
@@ -60,17 +63,17 @@ public class Application implements ApplicationDTO {
 
 	@Override
 	public Date getApplication_date() {
-		return application_date;
+		return applicationDate;
 	}
 
 
 	@Override
 	public ApprovalStatus getApplication_status() {
-		return application_status;
+		return approvalStatus;
 	}
 
 	public void setApplication_status(ApprovalStatus application_status) {
-		this.application_status = application_status;
+		this.approvalStatus = application_status;
 	}
 
 	public void setApplication_id(Long application_id) {
@@ -82,7 +85,7 @@ public class Application implements ApplicationDTO {
 	}
 
 	public void setApplication_date(Date application_date) {
-		this.application_date = application_date;
+		this.applicationDate = application_date;
 	}
 	
 	

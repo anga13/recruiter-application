@@ -15,7 +15,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfile;
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface CompetenceRepository extends JpaRepository<Competence, Long> {
 
-    Competence findByCompetence_id(Long Competence_id);
+    Competence findByCompetenceId(Long Competence_id);
     
     Competence save(Competence competence);  
 }

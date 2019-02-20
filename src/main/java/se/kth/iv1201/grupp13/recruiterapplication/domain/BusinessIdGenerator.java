@@ -46,11 +46,11 @@ class BusinessIdGenerator {
      *
      * @return The newly generated account number.
      */
-    long generatePerson_id() {
+    long generatePersonId() {
         return randomNoGenerator.nextLong();
     }
 
-    long generateCompetence_id() {
+    long generateCompetenceId() {
         return randomNoGenerator.nextLong();
     }
     

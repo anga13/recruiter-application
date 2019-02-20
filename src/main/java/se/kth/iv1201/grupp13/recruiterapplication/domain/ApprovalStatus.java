@@ -1,5 +1,4 @@
 package se.kth.iv1201.grupp13.recruiterapplication.domain;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +25,9 @@ public class ApprovalStatus implements ApprovalStatusDTO{
 
 	@Column(name = "name")
 	private String name;
+	
+    @OneToMany(mappedBy = "approvalStatus", cascade = CascadeType.ALL)
+    private Set<Application> applications = new HashSet<>();
 	
     /**
      * Required by JPA, should not be used.
@@ -63,6 +65,8 @@ public class ApprovalStatus implements ApprovalStatusDTO{
 	public void setApprovalStatusId(Long approvalStatusId) {
 		this.approvalStatusId = approvalStatusId;
 	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see se.kth.iv1201.grupp13.recruiterapplication.domain.RoleDTO#getName()

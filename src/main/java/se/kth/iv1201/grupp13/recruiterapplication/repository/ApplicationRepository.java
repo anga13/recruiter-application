@@ -19,7 +19,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.domain.Application;
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
     List<Application> findByUserIn(List<User> users);
-    List<Application> findByApplication_date(Date date);
+    List<Application> findByApplicationDate(Date date);
     
     Application save(Application application);  
 

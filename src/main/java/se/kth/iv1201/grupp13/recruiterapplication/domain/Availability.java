@@ -11,17 +11,17 @@ public class Availability implements AvailabilityDTO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "availability_id")
-	private Long availability_id;
+	private Long availabilityId;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
 	private User user;
 
 	@Column(name = "from_date")
-	private Date from_date;	
+	private Date fromDate;	
 	
 	@Column(name = "to_date")
-	private Date to_date;	
+	private Date toDate;	
 	
     /**
      * Required by JPA, should not be used.
@@ -30,27 +30,27 @@ public class Availability implements AvailabilityDTO {
 	}
 	
     /**
-     * <p>Creates a new instance with the specified user, from_date, 
-     * to_date. </p>
+     * <p>Creates a new instance with the specified user, fromDate, 
+     * toDate. </p>
      *
      * <p>A unique availability id will be set on the newly created
      * instance.</p>
      *
      * @param user  The availability's user.
-     * @param from_date The availability's from_date.
-     * @param to_date The availability's to_date.
+     * @param fromDate The availability's fromDate.
+     * @param toDate The availability's toDate.
      * 
      */
-    public Availability(User user, Date from_date, Date to_date) {	       
+    public Availability(User user, Date fromDate, Date toDate) {	       
         this.user = user;
-        this.from_date = from_date;
-        this.to_date = to_date;
-        availability_id = BeanFactory.getBean(BusinessIdGenerator.class).generateAvailabilityId();
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        availabilityId = BeanFactory.getBean(BusinessIdGenerator.class).generateAvailabilityId();
     }
 
 	@Override
-	public Long getAvailability_id() {
-		return availability_id;
+	public Long getAvailabilityId() {
+		return availabilityId;
 	}
 
 	@Override
@@ -59,25 +59,25 @@ public class Availability implements AvailabilityDTO {
 	}
 
 	@Override
-	public Date getFrom_date() {
-		return from_date;
+	public Date getFromDate() {
+		return fromDate;
 	}
 
 	@Override
-	public Date getTo_date() {
-		return to_date;
+	public Date getToDate() {
+		return toDate;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public void setFrom_date(Date from_date) {
-		this.from_date = from_date;
+	public void setFromDate(Date from_date) {
+		this.fromDate = from_date;
 	}
 
-	public void setTo_date(Date to_date) {
-		this.to_date = to_date;
+	public void setToDate(Date to_date) {
+		this.toDate = to_date;
 	}
 
 
