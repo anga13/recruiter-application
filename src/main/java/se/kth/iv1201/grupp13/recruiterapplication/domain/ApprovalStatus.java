@@ -15,26 +15,22 @@ import javax.persistence.Table;
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
 @Entity
-@Table(name = "person")
-public class Role implements RoleDTO{
+@Table(name = "approvalStatus")
+public class ApprovalStatus implements ApprovalStatusDTO{
 	
-	//APPLICANT, RECRUITER;
+	//UNHANDLED, ACCEPTED, REJECTED;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "role_id")
-	private Long roleId;
+	@Column(name = "approvalStatus_id")
+	private Long approvalStatusId;
 
 	@Column(name = "name")
 	private String name;
 	
-	//should check All..
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-    private Set<User> users = new HashSet<>();
-	
     /**
      * Required by JPA, should not be used.
      */
-	public Role() {
+	public ApprovalStatus() {
 	}
 	
     /**
@@ -46,9 +42,9 @@ public class Role implements RoleDTO{
      * @param name  The role name.
      * 
      */
-    public Role(String name) {	       
+    public ApprovalStatus(String name) {	       
         this.name = name;
-        roleId = BeanFactory.getBean(BusinessIdGenerator.class).generateRoleId();
+        approvalStatusId = BeanFactory.getBean(BusinessIdGenerator.class).generateApprovalStatusId();
     }
     
     @Override
@@ -60,12 +56,12 @@ public class Role implements RoleDTO{
 	 * @see se.kth.iv1201.grupp13.recruiterapplication.domain.RoleDTO#getRoleId()
 	 */
 	@Override
-	public Long getRoleId() {
-		return roleId;
+	public Long getApprovalStatusId() {
+		return approvalStatusId;
 	}
 
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
+	public void setApprovalStatusId(Long approvalStatusId) {
+		this.approvalStatusId = approvalStatusId;
 	}
 
 	/* (non-Javadoc)
@@ -84,3 +80,4 @@ public class Role implements RoleDTO{
 	
 	
 }
+
