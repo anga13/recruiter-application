@@ -76,8 +76,8 @@ public class CompetenceProfile implements CompetenceProfileDTO {
         return Util.toString(this);
     }
 
-	public void setCompetenceProfileId(Long competence_profile_id) {
-		this.competenceProfileId = competence_profile_id;
+	public void setCompetenceProfileId(Long competenceProfileId) {
+		this.competenceProfileId = competenceProfileId;
 	}
 
 	public void setUser(User user) {
@@ -88,7 +88,7 @@ public class CompetenceProfile implements CompetenceProfileDTO {
 		this.competence = competence;
 	}
 
-	public void setYearsOfExperience(int years_of_experience) {
-		this.yearsOfExperience = years_of_experience;
+	public void setYearsOfExperience(int yearsOfExperience) {
+		this.yearsOfExperience = yearsOfExperience;
 	}
 }

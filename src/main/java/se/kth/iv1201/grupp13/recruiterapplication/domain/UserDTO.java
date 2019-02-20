@@ -6,21 +6,21 @@ public interface UserDTO {
 
     public Long getPersonId();
 
-	public String getName();
+    public String getName();
 
-	public String getSurname();
+    public String getSurname();
 
-	public String getSsn();
+    public String getSsn();
 
-	public String getEmail();
+    public String getEmail();
 
-	public String getPassword();
+    public String getPassword();
 
-	public RoleDTO getRole();
+    public RoleDTO getRole();
 
-	public String getUsername();
+    public String getUsername();
 
-	Set<CompetenceProfile> getCompetenceProfiles();
+    Set<CompetenceProfile> getCompetenceProfiles();
 
-	Set<Availability> getAvailabilities();
+    Set<Availability> getAvailabilities();
 }

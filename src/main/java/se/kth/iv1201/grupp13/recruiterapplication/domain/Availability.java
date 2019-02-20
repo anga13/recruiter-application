@@ -72,12 +72,12 @@ public class Availability implements AvailabilityDTO {
 		this.user = user;
 	}
 
-	public void setFromDate(Date from_date) {
-		this.fromDate = from_date;
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
 	}
 
-	public void setToDate(Date to_date) {
-		this.toDate = to_date;
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
 	}
 
 

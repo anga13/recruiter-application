@@ -14,13 +14,13 @@ import javax.persistence.Table;
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
 @Entity
-@Table(name = "approvalStatus")
+@Table(name = "approval_status")
 public class ApprovalStatus implements ApprovalStatusDTO{
 	
 	//UNHANDLED, ACCEPTED, REJECTED;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "approvalStatus_id")
+	@Column(name = "approval_status_id")
 	private Long approvalStatusId;
 
 	@Column(name = "name")
