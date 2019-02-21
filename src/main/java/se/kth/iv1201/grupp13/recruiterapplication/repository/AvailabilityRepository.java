@@ -17,7 +17,10 @@ import java.util.List;
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface AvailabilityRepository extends JpaRepository<Availability, Long> {
 
-    List<Availability> findByFromDateAndToDate(Date fromDate, Date toDate);
+    //List<Availability> findByFromDateAndToDate(Date fromDate, Date toDate);
+    List<Availability> findByFromDateBefore(Date fromDate);
+    List<Availability> findByToDateAfter(Date toDate);
+
     
     @Override
     Availability save(Availability availability);
