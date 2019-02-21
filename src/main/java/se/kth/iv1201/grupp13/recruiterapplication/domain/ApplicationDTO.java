@@ -10,6 +10,6 @@ public interface ApplicationDTO {
 
     public Date getApplicationDate();
 
-    ApprovalStatus getApplicationStatus();
+    public ApprovalStatus getApplicationStatus();
 
 }
