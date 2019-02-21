@@ -34,7 +34,6 @@ public class Competence implements CompetenceDTO {
      */
     public Competence(String name) {
         this.name = name;
-        competenceId = BeanFactory.getBean(BusinessIdGenerator.class).generateCompetenceId();
     }
 
     @Override

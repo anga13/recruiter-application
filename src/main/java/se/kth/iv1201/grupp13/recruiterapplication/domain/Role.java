@@ -48,7 +48,6 @@ public class Role implements RoleDTO{
      */
     public Role(String name) {	       
         this.name = name;
-        roleId = BeanFactory.getBean(BusinessIdGenerator.class).generateRoleId();
     }
     
     @Override

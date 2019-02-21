@@ -46,7 +46,6 @@ public class Application implements ApplicationDTO {
         this.user = user;
         this.applicationDate = applicationDate;
         this.approvalStatus = approvalStatus;
-        applicationId = BeanFactory.getBean(BusinessIdGenerator.class).generateApplicationId();
     }
 
     @Override
