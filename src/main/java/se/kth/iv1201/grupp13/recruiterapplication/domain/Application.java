@@ -22,7 +22,7 @@ public class Application implements ApplicationDTO {
     private Date applicationDate;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "approvalStatus")
+    @JoinColumn(name = "approval_status_id")
     private ApprovalStatus approvalStatus;
 
     /**
