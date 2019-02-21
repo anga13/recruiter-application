@@ -14,4 +14,5 @@ import se.kth.iv1201.grupp13.recruiterapplication.domain.Role;
 public interface RoleRepository extends JpaRepository<Role, Long> {   
     Role save(Role role);  
     Role findByRoleId(Long roleId);
+    Role findbyName(String name); 
 }
