@@ -45,7 +45,6 @@ public class Availability implements AvailabilityDTO {
         this.user = user;
         this.fromDate = fromDate;
         this.toDate = toDate;
-        availabilityId = BeanFactory.getBean(BusinessIdGenerator.class).generateAvailabilityId();
     }
 
 	@Override

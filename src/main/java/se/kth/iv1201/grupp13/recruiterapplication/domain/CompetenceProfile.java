@@ -47,7 +47,6 @@ public class CompetenceProfile implements CompetenceProfileDTO {
         this.user = user;
         this.competence = competence;
         this.yearsOfExperience = yearsOfExperience;
-        competenceProfileId = BeanFactory.getBean(BusinessIdGenerator.class).generateCompetenceProfileId();
     }
 
 
