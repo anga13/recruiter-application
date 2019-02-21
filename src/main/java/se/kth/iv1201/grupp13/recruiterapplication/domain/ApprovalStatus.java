@@ -46,7 +46,6 @@ public class ApprovalStatus implements ApprovalStatusDTO{
      */
     public ApprovalStatus(String name) {	       
         this.name = name;
-        approvalStatusId = BeanFactory.getBean(BusinessIdGenerator.class).generateApprovalStatusId();
     }
     
     @Override
