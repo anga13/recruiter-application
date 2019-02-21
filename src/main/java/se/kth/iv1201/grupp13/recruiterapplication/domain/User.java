@@ -115,7 +115,6 @@ public class User implements UserDTO {
         this.password = password;
         this.role = role;
         this.username = username;
-        personId = new Long(5); //BeanFactory.getBean(BusinessIdGenerator.class).generatePersonId();
     }
 
     @Override
