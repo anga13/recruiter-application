@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "competence_profile")
 public class Application implements ApplicationDTO {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "application_id")
     private Long applicationId;
 

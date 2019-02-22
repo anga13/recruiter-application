@@ -14,7 +14,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 public class CompetenceProfile implements CompetenceProfileDTO {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "competence_profile_id")
 	private Long competenceProfileId;
 

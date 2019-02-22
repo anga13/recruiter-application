@@ -15,7 +15,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 public class User implements UserDTO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "person_id")
     private Long personId;
 
