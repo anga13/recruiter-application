@@ -23,7 +23,7 @@ public class Role implements RoleDTO{
 	
 	//APPLICANT, RECRUITER;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id")
 	private Long roleId;
 

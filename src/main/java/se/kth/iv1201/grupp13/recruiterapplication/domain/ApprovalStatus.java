@@ -23,7 +23,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 public class ApprovalStatus implements ApprovalStatusDTO {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "approval_status_id")
     private Long approvalStatusId;
 
