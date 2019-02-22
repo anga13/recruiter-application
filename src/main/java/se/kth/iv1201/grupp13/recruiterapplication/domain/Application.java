@@ -7,7 +7,7 @@ import javax.persistence.*;
  * Applications are created in this class.
  */
 @Entity
-@Table(name = "competence_profile")
+@Table(name = "application")
 public class Application implements ApplicationDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
