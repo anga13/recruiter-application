@@ -18,7 +18,7 @@ public interface ApprovalStatusRepository extends JpaRepository<ApprovalStatus, 
      * @param approvalStatusName The approval status name to search for.
      * @return The approval status with the specified approval status name.
      */
-    ApprovalStatus findByApprovalStatusName(Long approvalStatusName);
+    ApprovalStatus findByName(Long approvalStatusName);
     
     ApprovalStatus save(ApprovalStatus approvalStatus);  
 }
