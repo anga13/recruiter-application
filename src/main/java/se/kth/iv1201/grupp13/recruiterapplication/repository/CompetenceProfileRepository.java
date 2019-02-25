@@ -11,12 +11,17 @@ import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfile;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Competence;
 
 /**
- * Contains all database access concerning users.
+ * Contains all database access concerning competence profiles.
  */
 @Repository
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface CompetenceProfileRepository extends JpaRepository<CompetenceProfile, Long> {
-
+    /**
+     * Returns the competence profiles with the specified competence.
+     *
+     * @param competence The competence to search for.
+     * @return A list containing all competence profiles with the specified competence.
+     */
     List<CompetenceProfile> findByCompetence(Competence competence);
     
     @Override

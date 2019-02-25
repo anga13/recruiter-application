@@ -11,14 +11,26 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Contains all database access concerning users.
+ * Contains all database access concerning availabilities.
  */
 @Repository
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface AvailabilityRepository extends JpaRepository<Availability, Long> {
 
-    //List<Availability> findByFromDateAndToDate(Date fromDate, Date toDate);
+    /**
+     * Returns the availabilities with the specified from_date.
+     *
+     * @param fromDate The from_date to search for.
+     * @return A list containing all availabilities with the specified from_date.
+     */	
     List<Availability> findByFromDateBefore(Date fromDate);
+    
+    /**
+     * Returns the availabilities with the specified to_date.
+     *
+     * @param toDate The to_date to search for.
+     * @return A list containing all availabilities with the specified to_date.
+     */	    
     List<Availability> findByToDateAfter(Date toDate);
 
     

@@ -8,13 +8,18 @@ import org.springframework.transaction.annotation.Transactional;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Competence;
 
 /**
- * Contains all database access concerning users.
+ * Contains all database access concerning competences.
  */
 @Repository
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface CompetenceRepository extends JpaRepository<Competence, Long> {
-
-    Competence findByCompetenceId(Long CompetenceId);
+    /**
+     * Returns the competence with the specified competence name.
+     *
+     * @param competenceName The competence name to search for.
+     * @return A competence with the specified name.
+     */
+    Competence findByName(Long competenceName);
     
     @Override
     Competence save(Competence competence);  

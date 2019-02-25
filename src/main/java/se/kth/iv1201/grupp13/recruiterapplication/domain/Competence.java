@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
+/**
+  * The class creates a competence.
+ */
 @Entity
 @Table(name = "competence")
 public class Competence implements CompetenceDTO {
@@ -50,11 +53,17 @@ public class Competence implements CompetenceDTO {
     public String getName() {
         return name;
     }
-
+    
+    /**
+     * Sets the competence id.
+     */
     public void setCompetenceId(Long competenceId) {
         this.competenceId = competenceId;
     }
 
+    /**
+     * Sets the competence name.
+     */
     public void setName(String name) {
         this.name = name;
     }
