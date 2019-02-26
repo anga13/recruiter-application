@@ -13,5 +13,5 @@ import se.kth.iv1201.grupp13.recruiterapplication.domain.ApprovalStatus;
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface ApprovalStatusRepository extends JpaRepository<ApprovalStatus, Long> {   
     ApprovalStatus save(ApprovalStatus approvalStatus);  
-    ApprovalStatus findByApprovalStatusId(Long approvalStatusId);
+    ApprovalStatus findByName(String name);
 }

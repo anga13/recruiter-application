@@ -13,5 +13,5 @@ import se.kth.iv1201.grupp13.recruiterapplication.domain.Role;
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface RoleRepository extends JpaRepository<Role, Long> {   
     Role save(Role role);  
-    Role findByRoleId(Long roleId);
+    Role findByName(String name);
 }
