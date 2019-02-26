@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Availability;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfile;
 
 import java.util.Date;
 import java.util.List;
@@ -33,7 +34,7 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Long
      */	    
     List<Availability> findByToDateAfter(Date toDate);
 
-    
     @Override
     Availability save(Availability availability);
+    
 }
