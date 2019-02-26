@@ -5,16 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
-import se.kth.iv1201.grupp13.recruiterapplication.domain.UserDTO;
+
+import se.kth.iv1201.grupp13.recruiterapplication.domain.Availability;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfile;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.IllegalRecruiterTransactionException;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Role;
-import se.kth.iv1201.grupp13.recruiterapplication.domain.Availability;
-import se.kth.iv1201.grupp13.recruiterapplication.repository.UserRepository;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.UserDTO;
+import se.kth.iv1201.grupp13.recruiterapplication.repository.AvailabilityRepository;
 import se.kth.iv1201.grupp13.recruiterapplication.repository.CompetenceProfileRepository;
 import se.kth.iv1201.grupp13.recruiterapplication.repository.RoleRepository;
-import se.kth.iv1201.grupp13.recruiterapplication.repository.AvailabilityRepository;
+import se.kth.iv1201.grupp13.recruiterapplication.repository.UserRepository;
 
 
 /**
