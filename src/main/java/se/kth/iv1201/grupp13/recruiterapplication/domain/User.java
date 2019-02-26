@@ -7,6 +7,9 @@ import javax.persistence.*;
 
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
+/**
+ * The class User creates users with the personal attributes.
+ */
 @Entity
 @Table(name = "person")
 public class User implements UserDTO {
@@ -48,17 +51,22 @@ public class User implements UserDTO {
      * @return a set containing all competence profiles owned by this user.
      */
     @Override
-    public Set<CompetenceProfile> getCompetenceProfiles() {
-        return competenceProfiles;
+    public Set<CompetenceProfileDTO> getCompetenceProfiles() {
+        Set<CompetenceProfileDTO> copyOfCompfs = new HashSet<>();
+        copyOfCompfs.addAll(competenceProfiles);
+        return copyOfCompfs;
     }
-
+    
     /**
      * @return a set containing all availabilities owned by this user.
      */
     @Override
-    public Set<Availability> getAvailabilities() {
-        return availabilities;
+    public Set<AvailabilityDTO> getAvailabilities() {
+        Set<AvailabilityDTO> copyOfAvas = new HashSet<>();
+        copyOfAvas.addAll(availabilities);
+        return copyOfAvas;
     }
+
 
     /**
      * Adds the specified competence profile to the set of competence profiles
@@ -121,7 +129,9 @@ public class User implements UserDTO {
     public Long getPersonId() {
         return personId;
     }
-
+    /**
+     * Sets the user's person id.
+     */
     public void setPersonId(Long personId) {
         this.personId = personId;
     }
@@ -130,16 +140,21 @@ public class User implements UserDTO {
     public String getName() {
         return name;
     }
-
+    /**
+     * Sets the user's name.
+     */
     public void setName(String name) {
         this.name = name;
     }
-
+    
     @Override
     public String getSurname() {
         return surname;
     }
 
+    /**
+     * Sets the user's surname.
+     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
@@ -149,6 +164,9 @@ public class User implements UserDTO {
         return ssn;
     }
 
+    /**
+     * Sets the user's ssn.
+     */
     public void setSsn(String ssn) {
         this.ssn = ssn;
     }
@@ -157,7 +175,10 @@ public class User implements UserDTO {
     public String getEmail() {
         return email;
     }
-
+    
+    /**
+     * Sets the user's email.
+     */
     public void setEmail(String email) {
         this.email = email;
     }
@@ -167,6 +188,9 @@ public class User implements UserDTO {
         return password;
     }
 
+    /**
+     * Sets the user's password.
+     */
     public void setPassword(String password) {
         this.password = password;
     }
@@ -175,7 +199,9 @@ public class User implements UserDTO {
     public Role getRole() {
         return role;
     }
-
+    /**
+     * Sets the user's role.
+     */
     public void setRole(Role role) {
         this.role = role;
     }
@@ -184,7 +210,9 @@ public class User implements UserDTO {
     public String getUsername() {
         return username;
     }
-
+    /**
+     * Sets the user's user name.
+     */
     public void setUsername(String username) {
         this.username = username;
     }

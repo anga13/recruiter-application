@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+/**
+* The class Availability creates the periods that an applicant is available for work.
+ */
 @Entity
 @Table(name = "availability")
 public class Availability implements AvailabilityDTO {
@@ -67,14 +70,23 @@ public class Availability implements AvailabilityDTO {
 		return toDate;
 	}
 
+    /**
+     * Sets the availability's owner.
+     */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
+    /**
+     * Sets the availability's from_date.
+     */
 	public void setFromDate(Date fromDate) {
 		this.fromDate = fromDate;
 	}
 
+    /**
+     * Sets the availability's to_date.
+     */
 	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}

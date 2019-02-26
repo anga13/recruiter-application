@@ -7,11 +7,18 @@ import org.springframework.transaction.annotation.Transactional;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Role;
 
 /**
- * Contains all database access concerning users.
+ * Contains all database access concerning roles.
  */
 @Repository
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface RoleRepository extends JpaRepository<Role, Long> {   
+    /**
+     * Returns the role with the specified role name.
+     *
+     * @param roleName The role name to search for.
+     * @return A role with the specified name.
+     */
+    Role findByName(String roleName);
+    
     Role save(Role role);  
-    Role findByRoleId(Long roleId);
 }

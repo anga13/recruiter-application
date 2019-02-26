@@ -5,6 +5,10 @@ import javax.persistence.*;
 
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
+/**
+  * The class takes in values for how long an applicant
+  * has worked within a specific competence.
+ */
 @Entity
 @Table(name = "competence_profile")
 public class CompetenceProfile implements CompetenceProfileDTO {
@@ -74,19 +78,29 @@ public class CompetenceProfile implements CompetenceProfileDTO {
     public String toString() {
         return Util.toString(this);
     }
-
+    /**
+     * Sets the competence profile Id.
+     */
 	public void setCompetenceProfileId(Long competenceProfileId) {
 		this.competenceProfileId = competenceProfileId;
 	}
 
+    /**
+     * Sets the competence profile's owner.
+     */
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
+    /**
+     * Sets the competence profile's competence.
+     */
 	public void setCompetence(Competence competence) {
 		this.competence = competence;
 	}
-
+    /**
+     * Sets the competence profile's years of experience.
+     */
 	public void setYearsOfExperience(int yearsOfExperience) {
 		this.yearsOfExperience = yearsOfExperience;
 	}
