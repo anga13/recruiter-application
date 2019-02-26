@@ -42,9 +42,9 @@ public interface UserDTO {
     /**
      * Returns the user's competence profiles.
      */
-    Set<CompetenceProfile> getCompetenceProfiles();
+    Set<CompetenceProfileDTO> getCompetenceProfiles();
     /**
      * Returns the user's availabilities.
      */
-    Set<Availability> getAvailabilities();
+    Set<AvailabilityDTO> getAvailabilities();
 }

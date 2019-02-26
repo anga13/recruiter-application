@@ -51,17 +51,22 @@ public class User implements UserDTO {
      * @return a set containing all competence profiles owned by this user.
      */
     @Override
-    public Set<CompetenceProfile> getCompetenceProfiles() {
-        return competenceProfiles;
+    public Set<CompetenceProfileDTO> getCompetenceProfiles() {
+        Set<CompetenceProfileDTO> copyOfCompfs = new HashSet<>();
+        copyOfCompfs.addAll(competenceProfiles);
+        return copyOfCompfs;
     }
-
+    
     /**
      * @return a set containing all availabilities owned by this user.
      */
     @Override
-    public Set<Availability> getAvailabilities() {
-        return availabilities;
+    public Set<AvailabilityDTO> getAvailabilities() {
+        Set<AvailabilityDTO> copyOfAvas = new HashSet<>();
+        copyOfAvas.addAll(availabilities);
+        return copyOfAvas;
     }
+
 
     /**
      * Adds the specified competence profile to the set of competence profiles
