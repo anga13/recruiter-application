@@ -9,4 +9,4 @@ env:
   - POSTGRES_PASSWORD=
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-  - psql travis_ci_test < src/main/resources/application.properties -u postgres
+  - psql travis_ci_test < src/main/resources/application.properties -U postgres
