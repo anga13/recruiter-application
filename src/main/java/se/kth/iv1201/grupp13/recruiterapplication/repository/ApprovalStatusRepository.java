@@ -7,18 +7,18 @@ import org.springframework.transaction.annotation.Transactional;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.ApprovalStatus;
 
 /**
- * Contains all database access concerning an application's approval status.
+ * Contains all database access concerning approval status.
  */
 @Repository
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface ApprovalStatusRepository extends JpaRepository<ApprovalStatus, Long> {   
-    /**
-     * Returns the application's approval status with the specified status name.
-     *
-     * @param approvalStatusName The approval status name to search for.
-     * @return The approval status with the specified approval status name.
-     */
-    ApprovalStatus findByName(Long approvalStatusName);
+    ApprovalStatus save(ApprovalStatus approvalStatus); 
     
-    ApprovalStatus save(ApprovalStatus approvalStatus);  
+    /**
+     * Returns the approval status with the specified name.
+     *
+     * @param name The name to search for.
+     * @return ApprovalStatus with the specified name.
+     */	   
+    ApprovalStatus findByName(String name);
 }
