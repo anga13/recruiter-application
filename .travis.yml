@@ -1,7 +1,5 @@
 language:
   java
-addons:
-  postgresql: "11"
 services:
   - postgresql
 env:
