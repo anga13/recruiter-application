@@ -2,7 +2,7 @@ package se.kth.iv1201.grupp13.recruiterapplication.domain;
 
 /**
  * Thrown whenever an attempt is made to perform a transaction that is not
- * allowed by the bank's business rules.
+ * allowed by the recruiter system's business rules.
  */
 public class IllegalRecruiterTransactionException extends Exception {
     /**
@@ -13,4 +13,7 @@ public class IllegalRecruiterTransactionException extends Exception {
     public IllegalRecruiterTransactionException(String msg) {
         super(msg);
     }
+
+
 }
+

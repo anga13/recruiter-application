@@ -13,11 +13,13 @@ import javax.persistence.Table;
 
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
+/**
+*The class ApprovalStatus creates approval status of an application. 
+*The three kinds of the statues are UNHANDLED, ACCEPTED, REJECTED.
+ */
 @Entity
 @Table(name = "approval_status")
 public class ApprovalStatus implements ApprovalStatusDTO{
-	
-	//UNHANDLED, ACCEPTED, REJECTED;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "approval_status_id")
@@ -53,34 +55,29 @@ public class ApprovalStatus implements ApprovalStatusDTO{
         return Util.toString(this);
     }
 
-	/* (non-Javadoc)
-	 * @see se.kth.iv1201.grupp13.recruiterapplication.domain.RoleDTO#getRoleId()
-	 */
 	@Override
 	public Long getApprovalStatusId() {
 		return approvalStatusId;
 	}
 
+    /**
+     * Sets the application's approval status Id.
+     */
 	public void setApprovalStatusId(Long approvalStatusId) {
 		this.approvalStatusId = approvalStatusId;
 	}
 	
-	
-
-	/* (non-Javadoc)
-	 * @see se.kth.iv1201.grupp13.recruiterapplication.domain.RoleDTO#getName()
-	 */
 	@Override
 	public String getName() {
 		return name;
 	}
-
+	
+	
+    /**
+     * Sets the approval status name.
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
-    
-    
-	
-	
 }
 
