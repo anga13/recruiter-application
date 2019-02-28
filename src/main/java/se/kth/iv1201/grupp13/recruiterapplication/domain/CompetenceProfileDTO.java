@@ -1,9 +1,12 @@
 package se.kth.iv1201.grupp13.recruiterapplication.domain;
 
+import java.math.BigDecimal;
+
 /**
  * Defines all operation that can be performed on an {@link CompetenceProfile} outside
  * the application and domain layers.
  */
+
 public interface CompetenceProfileDTO {
 
     /**
@@ -24,5 +27,5 @@ public interface CompetenceProfileDTO {
     /**
      * Returns the competence profile's years of experience.
      */
-    public int getYearsOfExperience();
+    public BigDecimal getYearsOfExperience();
 }

@@ -1,5 +1,6 @@
 package se.kth.iv1201.grupp13.recruiterapplication.domain;
 
+import java.math.BigDecimal;
 import javax.persistence.*;
 
 
@@ -14,7 +15,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 public class CompetenceProfile implements CompetenceProfileDTO {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "competence_profile_id")
 	private Long competenceProfileId;
 
@@ -27,7 +28,7 @@ public class CompetenceProfile implements CompetenceProfileDTO {
 	private Competence competence;
 
 	@Column(name = "years_of_experience")
-	private int yearsOfExperience;	
+	private BigDecimal yearsOfExperience;	
 	
     /**
      * Required by JPA, should not be used.
@@ -47,7 +48,7 @@ public class CompetenceProfile implements CompetenceProfileDTO {
      * @param yearsOfExperience The competence profile's yearsOfExperience.
      * 
      */
-    public CompetenceProfile(User user, Competence competence, int yearsOfExperience) {	       
+    public CompetenceProfile(User user, Competence competence, BigDecimal yearsOfExperience) {	       
         this.user = user;
         this.competence = competence;
         this.yearsOfExperience = yearsOfExperience;
@@ -70,7 +71,7 @@ public class CompetenceProfile implements CompetenceProfileDTO {
 	}
 
 	@Override
-	public int getYearsOfExperience() {
+	public BigDecimal getYearsOfExperience() {
 		return yearsOfExperience;
 	}
 	
@@ -98,10 +99,11 @@ public class CompetenceProfile implements CompetenceProfileDTO {
 	public void setCompetence(Competence competence) {
 		this.competence = competence;
 	}
+        
     /**
      * Sets the competence profile's years of experience.
      */
-	public void setYearsOfExperience(int yearsOfExperience) {
+	public void setYearsOfExperience(BigDecimal yearsOfExperience) {
 		this.yearsOfExperience = yearsOfExperience;
 	}
 }

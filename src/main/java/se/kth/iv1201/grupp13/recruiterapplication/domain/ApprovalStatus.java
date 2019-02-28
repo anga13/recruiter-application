@@ -1,4 +1,5 @@
 package se.kth.iv1201.grupp13.recruiterapplication.domain;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,37 +20,39 @@ import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
  */
 @Entity
 @Table(name = "approval_status")
-public class ApprovalStatus implements ApprovalStatusDTO{
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "approval_status_id")
-	private Long approvalStatusId;
+public class ApprovalStatus implements ApprovalStatusDTO {
 
-	@Column(name = "name")
-	private String name;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "approval_status_id")
+    private Long approvalStatusId;
+
+    @Column(name = "name")
+    private String name;
+
     @OneToMany(mappedBy = "approvalStatus", cascade = CascadeType.ALL)
     private Set<Application> applications = new HashSet<>();
-	
+
     /**
      * Required by JPA, should not be used.
      */
-	public ApprovalStatus() {
-	}
-	
+    public ApprovalStatus() {
+    }
+
     /**
-     * <p>Creates a new instance with the specified name. </p>
+     * <p>
+     * Creates a new instance with the specified name. </p>
      *
-     * <p>A unique role id will be set on the newly created
-     * instance.</p>
+     * <p>
+     * A unique role id will be set on the newly created instance.</p>
      *
-     * @param name  The role name.
-     * 
+     * @param name The role name.
+     *
      */
-    public ApprovalStatus(String name) {	       
+    public ApprovalStatus(String name) {
         this.name = name;
     }
-    
+
     @Override
     public String toString() {
         return Util.toString(this);
@@ -80,4 +83,3 @@ public class ApprovalStatus implements ApprovalStatusDTO{
 		this.name = name;
 	}
 }
-

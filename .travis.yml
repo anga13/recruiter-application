@@ -1,3 +1,12 @@
 language:
   java
-
+services:
+  - postgresql
+env:
+  global:
+  - POSTGRES_URL=jdbc:postgresql://localhost:5432/travis_ci_test
+  - POSTGRES_USERNAME=postgres
+  - POSTGRES_PASSWORD=
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql travis_ci_test < src/main/scripts/db/pg.sql -U postgres
