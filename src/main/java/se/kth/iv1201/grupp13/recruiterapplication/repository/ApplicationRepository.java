@@ -25,11 +25,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
      * @return A list containing all applications with the specified users.
      */
     List<Application> findByUserIn(List<User> users);
-<<<<<<< HEAD
-    List<Application> findByApplicationDate(Date date);  
-    Application save(Application application);
 
-=======
     
     /**
      * Returns the applications with the specified application date.
@@ -40,6 +36,5 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
     List<Application> findByApplicationDate(Date date);
     
     Application save(Application application);  
->>>>>>> 0c1ddcf010e61cb639f1f4fe41819d62ab76cf94
 
 }
