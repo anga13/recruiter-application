@@ -3,11 +3,12 @@ package se.kth.iv1201.grupp13.recruiterapplication.domain;
 import java.util.Date;
 
 import javax.persistence.*;
-
+/**
+ * Applications are created in this class.
+ */
 @Entity
 @Table(name = "competence_profile")
 public class Application implements ApplicationDTO {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "application_id")
@@ -68,18 +69,30 @@ public class Application implements ApplicationDTO {
         return approvalStatus;
     }
 
+    /**
+     * Sets the application's approval status.
+     */
     public void setApplicationStatus(ApprovalStatus applicationStatus) {
         this.approvalStatus = applicationStatus;
     }
 
+    /**
+     * Sets the application id.
+     */
     public void setApplicationId(Long applicationId) {
         this.applicationId = applicationId;
     }
 
+    /**
+     * Sets the application's owner.
+     */
     public void setUser(User user) {
         this.user = user;
     }
 
+    /**
+     * Sets the application delivery date.
+     */
     public void setApplicationDate(Date applicationDate) {
         this.applicationDate = applicationDate;
     }

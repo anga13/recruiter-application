@@ -14,6 +14,9 @@ import javax.persistence.Table;
 
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
+/**
+ * The class Role creates user roles.
+ */
 @Entity
 @Table(name = "person")
 public class Role implements RoleDTO{
@@ -55,31 +58,27 @@ public class Role implements RoleDTO{
         return Util.toString(this);
     }
 
-	/* (non-Javadoc)
-	 * @see se.kth.iv1201.grupp13.recruiterapplication.domain.RoleDTO#getRoleId()
-	 */
 	@Override
 	public Long getRoleId() {
 		return roleId;
 	}
 
+    /**
+     * Sets the role id.
+     */
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
 	}
 
-	/* (non-Javadoc)
-	 * @see se.kth.iv1201.grupp13.recruiterapplication.domain.RoleDTO#getName()
-	 */
 	@Override
 	public String getName() {
 		return name;
 	}
 
+    /**
+     * Sets the role name.
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
-    
-    
-	
-	
 }

@@ -17,10 +17,37 @@ import java.util.List;
 @Repository
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface UserRepository extends JpaRepository<User, Long> {
-
+    /**
+     * Returns the user with the specified user name and password.
+     *
+     * @param username The user name to search for.
+     * @param password The password to search for.
+     * @return A user with the specified user name and password.
+     */
     User findByUsernameAndPassword(String username, String password);
-    List<User>  findByNameLike(String name);
-    List<User> findByAvailabilities(List<Availability> availabilities);    
+
+    /**
+     * Returns the users with the specified name.
+     *
+     * @param name The user's name to search for.
+     * @return A list containing all users with the specified name.
+     */
+    List<User> findByNameLike(String name);
+    
+    /**
+     * Returns the users with the specified availabilities.
+     *
+     * @param availabilities The availabilities to search for.
+     * @return A list containing all users with the specified availabilities.
+     */    
+    List<User> findByAvailabilities(List<Availability> availabilities); 
+
+    /**
+     * Returns the users with the specified competenceProfiles.
+     *
+     * @param competenceProfiles The competence profiles to search for.
+     * @return A list containing all users with the specified competence profiles.
+     */ 
     List<User> findByCompetenceProfiles(List<CompetenceProfile> competenceProfiles);    
 
     @Override

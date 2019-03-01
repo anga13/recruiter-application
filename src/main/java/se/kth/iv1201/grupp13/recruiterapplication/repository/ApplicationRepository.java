@@ -18,10 +18,28 @@ import se.kth.iv1201.grupp13.recruiterapplication.domain.Competence;
 @Repository
 @Transactional(propagation = Propagation.MANDATORY) // Support current transaction, throw an exception if there is no transaction currently.
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
-
+    /**
+     * Returns the applications with the specified users.
+     *
+     * @param uers The users to search for.
+     * @return A list containing all applications with the specified users.
+     */
     List<Application> findByUserIn(List<User> users);
+<<<<<<< HEAD
     List<Application> findByApplicationDate(Date date);  
     Application save(Application application);
 
+=======
+    
+    /**
+     * Returns the applications with the specified application date.
+     *
+     * @param date The application date to search for.
+     * @return A list containing all applications with the specified application date.
+     */
+    List<Application> findByApplicationDate(Date date);
+    
+    Application save(Application application);  
+>>>>>>> 0c1ddcf010e61cb639f1f4fe41819d62ab76cf94
 
 }
