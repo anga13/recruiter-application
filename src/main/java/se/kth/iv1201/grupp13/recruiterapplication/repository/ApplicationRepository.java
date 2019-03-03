@@ -34,5 +34,14 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
     List<Application> findByApplicationDate(Date date);
     
     Application save(Application application);  
+	
+    
+    /**
+     * Returns the applications of the specified user.
+     *
+     * @param user The user to search for.
+     * @return A list containing all applications of the specified user.
+     */	
+    Application findByUser(User user);  
 
 }

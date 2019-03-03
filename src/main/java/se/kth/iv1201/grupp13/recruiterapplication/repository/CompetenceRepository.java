@@ -23,4 +23,6 @@ public interface CompetenceRepository extends JpaRepository<Competence, Long> {
     
     @Override
     Competence save(Competence competence);  
+    
+    
 }

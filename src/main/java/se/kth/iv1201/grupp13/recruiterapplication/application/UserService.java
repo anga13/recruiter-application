@@ -49,9 +49,14 @@ public class UserService {
      * @param role The The user role.
      * @param username The user's user name.
      * @return The newly created user.
+     * @throws IllegalRecruiterTransactionException If the role does not exist.
      */
-    public UserDTO createUser(String name, String surname, String ssn, String email, String password, String roleName, String username){
-        Role roleEntity = roleRepo.findByName("APPLICANT");
+    public UserDTO createUser(String name, String surname, String ssn, String email, String password, String roleName, String username) throws IllegalRecruiterTransactionException{
+    	roleName="APPLICANT";
+    	Role roleEntity = roleRepo.findByName(roleName);
+        if (roleEntity == null) {
+            throw new IllegalRecruiterTransactionException("Role does not exist," + " role: " + roleName);
+        }
         return userRepo.save(new User(name, surname, ssn, email, password, roleEntity, username));
     }	
 
@@ -61,6 +66,7 @@ public class UserService {
      * @param username The user's user name.
      * @param password The user password.
      * @return The user who has logged in.
+     * @throws IllegalRecruiterTransactionException If the user does not exist.
      */
 	public UserDTO userLogin(String username, String password) throws IllegalRecruiterTransactionException {
         UserDTO user= userRepo.findByUsernameAndPassword(username, password);
@@ -76,8 +82,15 @@ public class UserService {
      *
      * @param user The current user.
      * @param competenceProfiles The competence profiles to be inserted.
+     * @throws IllegalRecruiterTransactionException If the specified user does not exist or the list to be added is empty.
      */
-    public void saveCompetenceProfiles(User user, List<CompetenceProfile> competenceProfiles) {
+    public void saveCompetenceProfiles(User user, List<CompetenceProfile> competenceProfiles) throws IllegalRecruiterTransactionException {
+        if (user == null) {
+            throw new IllegalRecruiterTransactionException("User does not exist," + " user: " + user);
+        }
+        if (competenceProfiles == null) {
+            throw new IllegalRecruiterTransactionException("The list of competence profiles does not exist!");
+        }        
     	for(CompetenceProfile competenceProfile:competenceProfiles) {
 			competenceProfileRepo.save(competenceProfile);
 			((User) user.getCompetenceProfiles()).addCompetenceProfile(competenceProfile);
@@ -90,8 +103,15 @@ public class UserService {
      *
      * @param user The current user.
      * @param availabilities The availabilities to be inserted.
+     * @throws IllegalRecruiterTransactionException If the specified user does not exist or the list to be added is empty.
      */
-    public void saveAvailabilities(User user, List<Availability> availabilities) {
+    public void saveAvailabilities(User user, List<Availability> availabilities) throws IllegalRecruiterTransactionException {
+        if (user == null) {
+            throw new IllegalRecruiterTransactionException("User does not exist," + " user: " + user);
+        }
+        if (availabilities == null) {
+            throw new IllegalRecruiterTransactionException("The list of availabilities does not exist!");
+        }    
     	for(Availability availability:availabilities) {
     		availabilityRepo.save(availability);
 			((User) user.getAvailabilities()).addAvailability(availability);    		

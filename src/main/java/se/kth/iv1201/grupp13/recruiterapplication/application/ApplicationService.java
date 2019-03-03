@@ -1,5 +1,6 @@
 package se.kth.iv1201.grupp13.recruiterapplication.application;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -64,13 +65,17 @@ public class ApplicationService {
      * @param user The current user.
      * @param applicationDate The date that the application is sent.
      * @return The newly created application.
+     * @throws IllegalRecruiterTransactionException If the status does not exist or the application date does not exist.
      */
     public ApplicationDTO createApplication(User user, Date applicationDate) throws IllegalRecruiterTransactionException {
         ApprovalStatus status = approvalStatusRepo.findByName(DEFAULT_APPROVAL_STATUS);
-        if (user != null && applicationDate != null) {
-            return applicationRepo.save(new Application(user, applicationDate, status));
+        if (status == null) {
+            throw new IllegalRecruiterTransactionException("Status does not exist," + " status: " + status);
         }
-        return null;
+        if (applicationDate == null) {
+            throw new IllegalRecruiterTransactionException("The application date does not exist");
+        }        
+        return applicationRepo.save(new Application(user, applicationDate, status));
     }
 
     /**
@@ -84,21 +89,32 @@ public class ApplicationService {
      * This is the method to find applications with specific time period the
      * applicant can work.
      *
-     * @param requiredFromDate The required date from which the applicant can
+     * @param requiredStartDate The required date from which the applicant can
      * begin to work.
-     * @param requiredToDate The required date from which the applicant can end
+     * @param requiredEndDate The required date from which the applicant can end
      * the work.
      * @return The applications that found by the searching time period the
      * applicant can work.
+     * @throws IllegalRecruiterTransactionException If the searched working dates does not exist.
      */
-    public List<Application> findByAvailability(Date requiredFromDate, Date requiredToDate) {
-        List<Availability> availabilities = availabilityRepo.findAll();
-        List<Availability> availabilitiesBeforeStartDate = availabilityRepo.findByFromDateBefore(requiredFromDate);
-        List<Availability> availabilitiesAfterToDate = availabilityRepo.findByToDateAfter(requiredToDate);
-        availabilities.retainAll(availabilitiesBeforeStartDate);
-        availabilities.retainAll(availabilitiesAfterToDate);
-        List<User> users = userRepo.findByAvailabilities(availabilities);
-        return applicationRepo.findByUserIn(users);
+    public List<ApplicationDTO> getApplicationsByWorkingTime(Date requiredStartDate, Date requiredEndDate)throws IllegalRecruiterTransactionException{
+        if (requiredStartDate == null||requiredEndDate == null) {
+            throw new IllegalRecruiterTransactionException("Date does not exist");
+        }
+    	List<User> users = userRepo.findAll();
+        List<ApplicationDTO> applicationDTOS = new ArrayList<>();
+        for(User user: users){
+            List<Availability> availabilities = availabilityRepo.findByUser(user);
+            for(Availability availability: availabilities){
+                Date fromDate = availability.getFromDate();
+                Date toDate = availability.getToDate();  
+                if(fromDate.compareTo(requiredStartDate)<0&&toDate.compareTo(requiredEndDate)>0) {
+                	ApplicationDTO app=applicationRepo.findByUser(user);
+                	applicationDTOS.add(app);
+                }
+            }
+        }
+        return applicationDTOS;
     }
 
     /**
@@ -117,11 +133,24 @@ public class ApplicationService {
      *
      * @param competence The competence that searched for.
      * @return The applications that found by the searching specific competence.
+     * @throws IllegalRecruiterTransactionException If the searched competence does not exist.
      */
-    public List<Application> findByCompetence(Competence competence) {
-        List<CompetenceProfile> competenceProfiles = competenceProfileRepo.findByCompetence(competence);
-        List<User> users = userRepo.findByCompetenceProfiles(competenceProfiles);
-        return applicationRepo.findByUserIn(users);
+    public List<ApplicationDTO> getApplicationsByCompetence(Competence competence) throws IllegalRecruiterTransactionException{
+        if (competence == null) {
+            throw new IllegalRecruiterTransactionException("Competence does not exist");
+        }
+        List<User> users = userRepo.findAll();
+        List<ApplicationDTO> applicationDTOS = new ArrayList<>();
+        for(User user: users){
+            List<CompetenceProfile> competenceProfiles = competenceProfileRepo.findByUser(user);
+            for(CompetenceProfile competenceProfile: competenceProfiles){
+                if(competence.equals(competenceProfile.getCompetence())) {
+                	ApplicationDTO app=applicationRepo.findByUser(user);
+                	applicationDTOS.add(app);
+                }
+            }
+        }
+        return applicationDTOS;
     }
 
     /**
@@ -130,9 +159,13 @@ public class ApplicationService {
      * @param name The name that searched for.
      * @return The applications that found by the searching specific user's
      * name.
+     * @throws IllegalRecruiterTransactionException If the searched users does not exist.
      */
-    public List<Application> findApplicationsByName(String name) {
+    public List<Application> findApplicationsByName(String name) throws IllegalRecruiterTransactionException {
         List<User> users = userRepo.findByNameLike(name);
+        if (users == null) {
+            throw new IllegalRecruiterTransactionException("There is no users with this name" + " user: " + name);
+        }
         return applicationRepo.findByUserIn(users);
     }
 

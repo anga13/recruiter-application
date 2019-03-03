@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Availability;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfile;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
 
 import java.util.Date;
 import java.util.List;
@@ -36,5 +37,13 @@ public interface AvailabilityRepository extends JpaRepository<Availability, Long
 
     @Override
     Availability save(Availability availability);
+
+    /**
+     * Returns the availabilities of the specified user.
+     *
+     * @param user The user to search for.
+     * @return A list containing all availabilities of the specified user.
+     */	
+    List<Availability> findByUser(User user);
     
 }

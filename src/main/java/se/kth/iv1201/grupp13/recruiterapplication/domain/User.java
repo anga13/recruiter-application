@@ -95,9 +95,14 @@ public class User implements UserDTO {
      *
      * @param competenceProfile The competence profile to add to this user's
      * competence profiles.
+     * 
+     * @throws IllegalRecruiterTransactionException when attempting to add an empty competence profile.
      */
-    public void addCompetenceProfile(CompetenceProfile competenceProfile) {
-        competenceProfiles.add(competenceProfile);
+    public void addCompetenceProfile(CompetenceProfile competenceProfile) throws IllegalRecruiterTransactionException {
+        if (competenceProfile==null) {
+            throw new IllegalRecruiterTransactionException("Attempt to add an empty competence profile!");
+        }
+    	competenceProfiles.add(competenceProfile);
     }
 
     /**
@@ -107,8 +112,13 @@ public class User implements UserDTO {
      *
      * @param availability The availability to add to this user's
      * availabilities.
+     * 
+     * @throws IllegalRecruiterTransactionException when attempting to add an empty availability.
      */
-    public void addAvailability(Availability availability) {
+    public void addAvailability(Availability availability) throws IllegalRecruiterTransactionException {
+        if (availability==null) {
+            throw new IllegalRecruiterTransactionException("Attempt to add an empty availability!");
+        }
         availabilities.add(availability);
     }
 
