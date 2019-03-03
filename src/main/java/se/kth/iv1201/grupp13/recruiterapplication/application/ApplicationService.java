@@ -70,10 +70,10 @@ public class ApplicationService {
     public ApplicationDTO createApplication(User user, Date applicationDate) throws IllegalRecruiterTransactionException {
         ApprovalStatus status = approvalStatusRepo.findByName(DEFAULT_APPROVAL_STATUS);
         if (status == null) {
-            throw new IllegalRecruiterTransactionException("Status does not exist," + " status: " + status);
+            throw new IllegalRecruiterTransactionException("Status does not exist! Create failed!");
         }
         if (applicationDate == null) {
-            throw new IllegalRecruiterTransactionException("The application date does not exist");
+            throw new IllegalRecruiterTransactionException("The application date does not exist! Create failed!");
         }        
         return applicationRepo.save(new Application(user, applicationDate, status));
     }
@@ -99,7 +99,7 @@ public class ApplicationService {
      */
     public List<ApplicationDTO> getApplicationsByWorkingTime(Date requiredStartDate, Date requiredEndDate)throws IllegalRecruiterTransactionException{
         if (requiredStartDate == null||requiredEndDate == null) {
-            throw new IllegalRecruiterTransactionException("Date does not exist");
+            throw new IllegalRecruiterTransactionException("Date does not exist! Search failed!");
         }
     	List<User> users = userRepo.findAll();
         List<ApplicationDTO> applicationDTOS = new ArrayList<>();
@@ -137,7 +137,7 @@ public class ApplicationService {
      */
     public List<ApplicationDTO> getApplicationsByCompetence(Competence competence) throws IllegalRecruiterTransactionException{
         if (competence == null) {
-            throw new IllegalRecruiterTransactionException("Competence does not exist");
+            throw new IllegalRecruiterTransactionException("Competence does not exist! Search failed!");
         }
         List<User> users = userRepo.findAll();
         List<ApplicationDTO> applicationDTOS = new ArrayList<>();

@@ -55,7 +55,7 @@ public class UserService {
     	roleName="APPLICANT";
     	Role roleEntity = roleRepo.findByName(roleName);
         if (roleEntity == null) {
-            throw new IllegalRecruiterTransactionException("Role does not exist," + " role: " + roleName);
+            throw new IllegalRecruiterTransactionException("Role does not exist! Create failed!" );
         }
         return userRepo.save(new User(name, surname, ssn, email, password, roleEntity, username));
     }	
@@ -89,7 +89,7 @@ public class UserService {
             throw new IllegalRecruiterTransactionException("User does not exist," + " user: " + user);
         }
         if (competenceProfiles == null) {
-            throw new IllegalRecruiterTransactionException("The list of competence profiles does not exist!");
+            throw new IllegalRecruiterTransactionException("The list of competence profiles does not exist, save failed!");
         }        
     	for(CompetenceProfile competenceProfile:competenceProfiles) {
 			competenceProfileRepo.save(competenceProfile);
@@ -110,7 +110,7 @@ public class UserService {
             throw new IllegalRecruiterTransactionException("User does not exist," + " user: " + user);
         }
         if (availabilities == null) {
-            throw new IllegalRecruiterTransactionException("The list of availabilities does not exist!");
+            throw new IllegalRecruiterTransactionException("The list of availabilities does not exist, save failed!");
         }    
     	for(Availability availability:availabilities) {
     		availabilityRepo.save(availability);

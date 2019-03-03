@@ -34,6 +34,7 @@ public class ExceptionHandlers implements ErrorController {
     public static final String USER_NOT_FOUND = "user-not-found";
     public static final String CREATE_FAILED = "create";
     public static final String SEARCH_FAILED = "search";
+    public static final String SAVE_FAILED = "save";
     static final String ERROR_PATH = "failure";
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandlers.class);
 
@@ -50,6 +51,8 @@ public class ExceptionHandlers implements ErrorController {
             model.addAttribute(ERROR_TYPE_KEY, USER_NOT_FOUND);
         } else if (exception.getMessage().toUpperCase().contains("CREATE")) {        
             model.addAttribute(ERROR_TYPE_KEY, CREATE_FAILED);
+        } else if (exception.getMessage().toUpperCase().contains("SAVE")) {        
+            model.addAttribute(ERROR_TYPE_KEY, SAVE_FAILED);
         } else if (exception.getMessage().toUpperCase().contains("SEARCH")) {
             model.addAttribute(ERROR_TYPE_KEY, SEARCH_FAILED);
         } else {
