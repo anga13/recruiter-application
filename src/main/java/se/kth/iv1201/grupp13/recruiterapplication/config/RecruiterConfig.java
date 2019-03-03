@@ -79,7 +79,6 @@ public class RecruiterConfig implements WebMvcConfigurer, ApplicationContextAwar
     public LocaleChangeInterceptor localeChangeInterceptor() {
         String nameOfHttpParamForLangCode = "lang";
         String[] allowedHttpMethodsForLocaleChange = {"GET", "POST"};
-
         LocaleChangeInterceptor i18nBean = new LocaleChangeInterceptor();
         i18nBean.setParamName(nameOfHttpParamForLangCode);
         i18nBean.setHttpMethods(allowedHttpMethodsForLocaleChange);
