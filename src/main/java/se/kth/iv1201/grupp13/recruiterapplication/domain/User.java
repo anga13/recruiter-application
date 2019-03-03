@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
@@ -13,24 +16,38 @@ import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 @Entity
 @Table(name = "person")
 public class User implements UserDTO {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_id")
+    @Column(name = "person_id", nullable = false)
     private Long personId;
 
+    @NotNull(message = "{user.name.missing}")
+    @Pattern(regexp = "^[a-z|A-Z]{3,15}$", message = "{user.firstName.invalid-char}")
+    @Size(min = 2, max = 30, message = "{user.firstName.length}")
     @Column(name = "name")
     private String name;
 
+    @NotNull(message = "{user.surName.missing}")
+    @Pattern(regexp = "^^[a-zA-Z]{3,15}$", message = "{user.surName.invalid-char}")
+    @Size(min = 2, max = 30, message = "{user.surName.length}")
     @Column(name = "surname")
     private String surname;
 
+	@NotNull(message = "{user.ssn.missing}")
+    @Pattern(regexp = "^(19|20)?[0-9]{6}[- ]?[0-9]{4}$", message = "{user.ssn.invalid-char}")
+    @Size(min = 1, max = 60, message = "{user.ssn.length}")
     @Column(name = "ssn")
     private String ssn;
 
+	@NotNull(message = "{user.email.missing}")
+    @Pattern(regexp = "^([A-Za-z\\d-_.]+)*@([A-Za-z\\d]+[.])[A-Za-z\\d]{2,5}$", message = "{user.email.invalid-char}")		
+    @Size(min = 1, max = 60, message = "{user.email.length}")
     @Column(name = "email")
     private String email;
 
+	@NotNull(message = "{user.password.missing}")
+    @Pattern(regexp = "^[0-9a-zA-Z_]{6,}$", message = "{user.password.invalid-char}")
+    @Size(min = 1, max = 15, message = "{user.password.length}")
     @Column(name = "password")
     private String password;
 
@@ -38,6 +55,9 @@ public class User implements UserDTO {
     @JoinColumn(name = "role_id")
     private Role role;
 
+	@NotNull(message = "{user.userName.missing}")
+    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "{user.userName.invalid-char}")
+    @Size(min = 2, max = 30, message = "{user.userName.length}")    
     @Column(name = "username")
     private String username;
 

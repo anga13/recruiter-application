@@ -2,7 +2,9 @@ package se.kth.iv1201.grupp13.recruiterapplication.domain;
 
 import java.math.BigDecimal;
 import javax.persistence.*;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import se.kth.iv1201.grupp13.recruiterapplication.util.Util;
 
@@ -23,10 +25,14 @@ public class CompetenceProfile implements CompetenceProfileDTO {
 	@JoinColumn(name = "person_id")
 	private User user;
 	
+	@NotNull(message = "{competenceProfile.competence.missing}")	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "competence_id")
 	private Competence competence;
 
+	@NotNull(message = "{competenceProfile.yearsOfExperience.missing}")
+    @Pattern(regexp = "^[0-9]{1,2}$", message = "{competenceProfile.yearsOfExperience.invalid-char}")
+    @Size(min = 1, max = 2, message = "{competenceProfile.yearsOfExperience.length}")    
 	@Column(name = "years_of_experience")
 	private BigDecimal yearsOfExperience;	
 	
