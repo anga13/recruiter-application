@@ -46,7 +46,9 @@ public class ExceptionHandlers implements ErrorController {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(IllegalRecruiterTransactionException exception, Model model) {
         logExceptionDebugLevel(exception);
-        if (exception.getMessage().toUpperCase().contains("CREATE")) {
+        if (exception.getMessage().toUpperCase().contains("USER")) {
+            model.addAttribute(ERROR_TYPE_KEY, USER_NOT_FOUND);
+        } else if (exception.getMessage().toUpperCase().contains("CREATE")) {        
             model.addAttribute(ERROR_TYPE_KEY, CREATE_FAILED);
         } else if (exception.getMessage().toUpperCase().contains("SEARCH")) {
             model.addAttribute(ERROR_TYPE_KEY, SEARCH_FAILED);
