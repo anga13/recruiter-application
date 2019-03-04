@@ -1,5 +1,6 @@
 package se.kth.iv1201.grupp13.recruiterapplication.domain;
 
+import java.math.BigDecimal;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -32,9 +33,9 @@ public class CompetenceProfile implements CompetenceProfileDTO {
     @NotNull(message = "{competenceProfile.yearsOfExperience.missing}")
     @Pattern(regexp = "^[0-9]{1,2}$", message = "{competenceProfile.yearsOfExperience.invalid-char}")
     @Size(min = 1, max = 2, message = "{competenceProfile.yearsOfExperience.length}")
-    @Column(name = "years_of_experience")
-    private int yearsOfExperience;
-
+	  @Column(name = "years_of_experience")
+	  private BigDecimal yearsOfExperience;	
+	
     /**
      * Required by JPA, should not be used.
      */
@@ -55,7 +56,7 @@ public class CompetenceProfile implements CompetenceProfileDTO {
      * @param yearsOfExperience The competence profile's yearsOfExperience.
      *
      */
-    public CompetenceProfile(User user, Competence competence, int yearsOfExperience) {
+public CompetenceProfile(User user, Competence competence, BigDecimal yearsOfExperience) {
         this.user = user;
         this.competence = competence;
         this.yearsOfExperience = yearsOfExperience;
@@ -81,6 +82,12 @@ public class CompetenceProfile implements CompetenceProfileDTO {
         return yearsOfExperience;
     }
 
+
+	@Override
+	public BigDecimal getYearsOfExperience() {
+		return yearsOfExperience;
+	}
+	
     @Override
     public String toString() {
         return Util.toString(this);
@@ -104,13 +111,13 @@ public class CompetenceProfile implements CompetenceProfileDTO {
      * Sets the competence profile's competence.
      */
     public void setCompetence(Competence competence) {
-        this.competence = competence;
-    }
-
+		this.competence = competence;
+	}
+        
     /**
      * Sets the competence profile's years of experience.
      */
-    public void setYearsOfExperience(int yearsOfExperience) {
-        this.yearsOfExperience = yearsOfExperience;
-    }
+	  public void setYearsOfExperience(BigDecimal yearsOfExperience) {
+		this.yearsOfExperience = yearsOfExperience;
+	}
 }

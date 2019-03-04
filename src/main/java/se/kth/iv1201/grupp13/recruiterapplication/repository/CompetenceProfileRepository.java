@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfile;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfileDTO;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Competence;
 
 /**
@@ -28,6 +29,15 @@ public interface CompetenceProfileRepository extends JpaRepository<CompetencePro
     
     @Override
     CompetenceProfile save(CompetenceProfile competenceProfile);
+
+    /**
+     * Returns the competence profiles of the specified user.
+     *
+     * @param user The user to search for.
+     * @return A list containing all competence profiles of the specified user.
+     */
+	List<CompetenceProfile> findByUser(User user);
+	
 
 	//Set<CompetenceProfile> save(Set<CompetenceProfile> competenceProfiles);
 

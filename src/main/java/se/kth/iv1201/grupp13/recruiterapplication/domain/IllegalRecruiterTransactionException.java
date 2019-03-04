@@ -14,5 +14,6 @@ public class IllegalRecruiterTransactionException extends Exception {
         super(msg);
     }
 
+
 }
 

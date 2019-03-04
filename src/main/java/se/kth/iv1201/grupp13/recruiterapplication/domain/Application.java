@@ -7,10 +7,10 @@ import javax.persistence.*;
  * Applications are created in this class.
  */
 @Entity
-@Table(name = "competence_profile")
+@Table(name = "application")
 public class Application implements ApplicationDTO {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "application_id")
     private Long applicationId;
 
@@ -22,7 +22,7 @@ public class Application implements ApplicationDTO {
     private Date applicationDate;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "approvalStatus")
+    @JoinColumn(name = "approval_status_id")
     private ApprovalStatus approvalStatus;
 
     /**
