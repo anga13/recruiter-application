@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Application;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.ApplicationDTO;
 
 /**
  * Contains all database access concerning users.
@@ -33,6 +34,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
      */
     List<Application> findByApplicationDate(Date date);
     
-    Application save(Application application);  
+    Application save(Application application);
+
+	Application findByUser(User user);  
 
 }

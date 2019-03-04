@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Availability;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfile;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
@@ -55,6 +54,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Override
     User save(User user);
+
+	User findByName(String name);
     
   /*  @Query("select * from person p left join ?1 on p.person_id = ?1.person_id", nativeQuery = true)
     List<User> findByAvailabilities(List<Availability> searchedAvailabilities);
