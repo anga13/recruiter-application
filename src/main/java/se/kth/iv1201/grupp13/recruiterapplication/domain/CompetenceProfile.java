@@ -24,11 +24,12 @@ public class CompetenceProfile implements CompetenceProfileDTO {
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
 	private User user;
-	
-	@NotNull(message = "{competenceProfile.competence.missing}")	
+
+    @NotNull(message = "{competenceProfile.competence.missing}")
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "competence_id")
 	private Competence competence;
+
 
 	@NotNull(message = "{competenceProfile.yearsOfExperience.missing}")
     @Pattern(regexp = "^[0-9]{1,2}$", message = "{competenceProfile.yearsOfExperience.invalid-char}")

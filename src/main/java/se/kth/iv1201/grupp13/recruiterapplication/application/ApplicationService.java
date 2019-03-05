@@ -1,5 +1,8 @@
 package se.kth.iv1201.grupp13.recruiterapplication.application;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -48,16 +51,36 @@ public class ApplicationService {
     private static final String DEFAULT_APPROVAL_STATUS = "UNHANDLED";
 
     /**
+     * Fetches the users with the specified name.
+     * @param name The name of the user.
+     * @return The list of the users found, or null if none found.
+     */
+    public List<User> findUsersByName(String name) {
+        return userRepo.findByNameLike(name);
+    }    
+    
+    /**
      * This is the method that get the current date when an application is sent.
      *
-     * @return The application date.
+     * @return The application date that can be identified by SQL.
      */
     public Date getApplicationDate() {
         Calendar cal = Calendar.getInstance();
         Date date = cal.getTime();
-        return date;
+        return new java.sql.Date(date.getTime());
     }
-
+    
+    /**
+     * This is the method that convert a string of date to the date format that SQL can identify.
+     * @param dateString The dateString to be converted.
+     * @return The SQL date.
+     */    
+    private Date convertToSqlDate(String dateString) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date date = sdf.parse(dateString);
+        return new java.sql.Date(date.getTime());
+    }
+       
     /**
      * This is the method to create application.
      *
@@ -79,27 +102,35 @@ public class ApplicationService {
     public List<Application> getAllApplications() {
         return applicationRepo.findAll();
     }
-
+    
     /**
      * This is the method to find applications with specific time period the
      * applicant can work.
      *
-     * @param requiredFromDate The required date from which the applicant can
+     * @param requiredStartDate The required date from which the applicant can
      * begin to work.
-     * @param requiredToDate The required date from which the applicant can end
+     * @param requiredEndDate The required date from which the applicant can end
      * the work.
      * @return The applications that found by the searching time period the
      * applicant can work.
      */
-    public List<Application> findByAvailability(Date requiredFromDate, Date requiredToDate) {
-        List<Availability> availabilities = availabilityRepo.findAll();
-        List<Availability> availabilitiesBeforeStartDate = availabilityRepo.findByFromDateBefore(requiredFromDate);
-        List<Availability> availabilitiesAfterToDate = availabilityRepo.findByToDateAfter(requiredToDate);
-        availabilities.retainAll(availabilitiesBeforeStartDate);
-        availabilities.retainAll(availabilitiesAfterToDate);
-        List<User> users = userRepo.findByAvailabilities(availabilities);
-        return applicationRepo.findByUserIn(users);
+    public List<ApplicationDTO> getApplicationsByWorkingTime(Date requiredStartDate, Date requiredEndDate){
+        List<User> users = userRepo.findAll();
+        List<ApplicationDTO> applicationDTOS = new ArrayList<>();
+        for(User user: users){
+            List<Availability> availabilities = availabilityRepo.findByUser(user);
+            for(Availability availability: availabilities){
+                Date fromDate = availability.getFromDate();
+                Date toDate = availability.getToDate();  
+                if(fromDate.compareTo(requiredStartDate)<0&&toDate.compareTo(requiredEndDate)>0) {
+                	ApplicationDTO app=applicationRepo.findByUser(user);
+                	applicationDTOS.add(app);
+                }
+            }
+        }
+        return applicationDTOS;
     }
+    
 
     /**
      * This is the method to find applications with specific application date.
@@ -118,10 +149,19 @@ public class ApplicationService {
      * @param competence The competence that searched for.
      * @return The applications that found by the searching specific competence.
      */
-    public List<Application> findByCompetence(Competence competence) {
-        List<CompetenceProfile> competenceProfiles = competenceProfileRepo.findByCompetence(competence);
-        List<User> users = userRepo.findByCompetenceProfiles(competenceProfiles);
-        return applicationRepo.findByUserIn(users);
+    public List<ApplicationDTO> getApplicationsByCompetence(Competence competence){
+        List<User> users = userRepo.findAll();
+        List<ApplicationDTO> applicationDTOS = new ArrayList<>();
+        for(User user: users){
+            List<CompetenceProfile> competenceProfiles = competenceProfileRepo.findByUser(user);
+            for(CompetenceProfile competenceProfile: competenceProfiles){
+                if(competence.equals(competenceProfile.getCompetence())) {
+                	ApplicationDTO app=applicationRepo.findByUser(user);
+                	applicationDTOS.add(app);
+                }
+            }
+        }
+        return applicationDTOS;
     }
 
     /**
@@ -131,6 +171,7 @@ public class ApplicationService {
      * @return The applications that found by the searching specific user's
      * name.
      */
+    
     public List<Application> findApplicationsByName(String name) {
         List<User> users = userRepo.findByNameLike(name);
         return applicationRepo.findByUserIn(users);

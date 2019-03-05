@@ -23,12 +23,15 @@ public class User implements UserDTO {
 
     @NotNull(message = "{user.name.missing}")
     @Pattern(regexp = "^[a-z|A-Z]{3,15}$", message = "{user.firstName.invalid-char}")
+
     @Size(min = 2, max = 30, message = "{user.firstName.length}")
     @Column(name = "name")
     private String name;
 
     @NotNull(message = "{user.surName.missing}")
+
     @Pattern(regexp = "^^[a-zA-Z]{3,15}$", message = "{user.surName.invalid-char}")
+
     @Size(min = 2, max = 30, message = "{user.surName.length}")
     @Column(name = "surname")
     private String surname;
@@ -39,15 +42,18 @@ public class User implements UserDTO {
     @Column(name = "ssn")
     private String ssn;
 
+
 	@NotNull(message = "{user.email.missing}")
     @Pattern(regexp = "^([A-Za-z\\d-_.]+)*@([A-Za-z\\d]+[.])[A-Za-z\\d]{2,5}$", message = "{user.email.invalid-char}")		
+	
     @Size(min = 1, max = 60, message = "{user.email.length}")
     @Column(name = "email")
     private String email;
 
 	@NotNull(message = "{user.password.missing}")
-    @Pattern(regexp = "^[0-9a-zA-Z_]{6,}$", message = "{user.password.invalid-char}")
-    @Size(min = 1, max = 15, message = "{user.password.length}")
+
+    @Pattern(regexp = "^.*(?=.{6,15})(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$", message = "{user.password.invalid-char}")
+    @Size(min = 6, max = 15, message = "{user.password.length}")	
     @Column(name = "password")
     private String password;
 
