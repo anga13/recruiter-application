@@ -5,20 +5,17 @@
  */
 package se.kth.iv1201.grupp13.recruiterapplication.presentation;
 
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import se.kth.iv1201.grupp13.recruiterapplication.application.UserService;
-import se.kth.iv1201.grupp13.recruiterapplication.domain.AvailabilityDTO;
-import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfileDTO;
-import se.kth.iv1201.grupp13.recruiterapplication.domain.RoleDTO;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.UserDTO;
 
 /**
  *
  * @author anders
+ * Controls the API endpoints for users
  */
 @RestController
 public class UserController {
@@ -28,10 +25,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Creates a new user with the role of applicant
+     * @param user
+     * @return the created instance
+     */
     @PostMapping(USER_BASE_URL)
     public UserDTO createApplicant(@RequestBody UserRequestBody user) {
         return userService.createApplicant(user);
     }
-
-     
 }
