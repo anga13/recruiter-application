@@ -97,5 +97,9 @@ public class UserService {
 			((User) user.getAvailabilities()).addAvailability(availability);    		
 		}
     }
+
+    public UserDTO createApplicant(UserDTO user) {
+       return this.createUser(user.getName(), user.getSurname(), user.getSsn(), user.getEmail(), user.getPassword(), "", user.getUsername());
+    }
     
 }
