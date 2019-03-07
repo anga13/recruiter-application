@@ -77,12 +77,6 @@ public CompetenceProfile(User user, Competence competence, BigDecimal yearsOfExp
         return competence;
     }
 
-    @Override
-    public int getYearsOfExperience() {
-        return yearsOfExperience;
-    }
-
-
 	@Override
 	public BigDecimal getYearsOfExperience() {
 		return yearsOfExperience;
