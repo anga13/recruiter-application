@@ -19,11 +19,11 @@ public class User implements UserDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_id")
+    @Column(name = "person_id", nullable = false)
     private Long personId;
 
-    @NotNull(message = "{user.firstName.missing}")
-    @Pattern(regexp = "^[a-zA-Z]{2,20}$", message = "{user.firstName.invalid-char}")
+    @NotNull(message = "{user.name.missing}")
+    @Pattern(regexp = "^[a-z|A-Z]{3,15}$", message = "{user.firstName.invalid-char}")
     @Size(min = 2, max = 30, message = "{user.firstName.length}")
     @Column(name = "name")
     private String name;
@@ -34,23 +34,22 @@ public class User implements UserDTO {
     @Column(name = "surname")
     private String surname;
 
-    
-	@NotNull(message = "{user.ssn.missing}")
+    @NotNull(message = "{user.ssn.missing}")
     @Pattern(regexp = "^(19|20)?[0-9]{6}[- ]?[0-9]{4}$", message = "{user.ssn.invalid-char}")
     @Size(min = 1, max = 60, message = "{user.ssn.length}")
     @Column(name = "ssn")
     private String ssn;
 
-	
-	@NotNull(message = "{user.email.missing}")
-    @Pattern(regexp = "^[A-Za-z\\d]+([-_.][A-Za-z\\d]+)*@([A-Za-z\\d]+[.])+[A-Za-z\\d]{2,5}$", message = "{user.email.invalid-char}")
+    @NotNull(message = "{user.email.missing}")
+    @Pattern(regexp = "^([A-Za-z\\d-_.]+)*@([A-Za-z\\d]+[.])[A-Za-z\\d]{2,5}$", message = "{user.email.invalid-char}")
     @Size(min = 1, max = 60, message = "{user.email.length}")
     @Column(name = "email")
     private String email;
 
-	@NotNull(message = "{user.password.missing}")
+    @NotNull(message = "{user.password.missing}")
     @Pattern(regexp = "^.*(?=.{6,15})(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$", message = "{user.password.invalid-char}")
-    @Size(min = 6, max = 15, message = "{user.password.length}")	
+    @Size(min = 6, max = 15, message = "{user.password.length}")
+
     @Column(name = "password")
     private String password;
 
@@ -58,6 +57,9 @@ public class User implements UserDTO {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    @NotNull(message = "{user.userName.missing}")
+    @Pattern(regexp = "^[a-z0-9_-]{3,15}$", message = "{user.userName.invalid-char}")
+    @Size(min = 2, max = 30, message = "{user.userName.length}")
     @Column(name = "username")
     private String username;
 
@@ -76,7 +78,7 @@ public class User implements UserDTO {
         copyOfCompfs.addAll(competenceProfiles);
         return copyOfCompfs;
     }
-    
+
     /**
      * @return a set containing all availabilities owned by this user.
      */
@@ -86,7 +88,6 @@ public class User implements UserDTO {
         copyOfAvas.addAll(availabilities);
         return copyOfAvas;
     }
-
 
     /**
      * Adds the specified competence profile to the set of competence profiles
@@ -149,6 +150,7 @@ public class User implements UserDTO {
     public Long getPersonId() {
         return personId;
     }
+
     /**
      * Sets the user's person id.
      */
@@ -160,13 +162,14 @@ public class User implements UserDTO {
     public String getName() {
         return name;
     }
+
     /**
      * Sets the user's name.
      */
     public void setName(String name) {
         this.name = name;
     }
-    
+
     @Override
     public String getSurname() {
         return surname;
@@ -195,7 +198,7 @@ public class User implements UserDTO {
     public String getEmail() {
         return email;
     }
-    
+
     /**
      * Sets the user's email.
      */
@@ -219,6 +222,7 @@ public class User implements UserDTO {
     public Role getRole() {
         return role;
     }
+
     /**
      * Sets the user's role.
      */
@@ -230,6 +234,7 @@ public class User implements UserDTO {
     public String getUsername() {
         return username;
     }
+
     /**
      * Sets the user's user name.
      */
