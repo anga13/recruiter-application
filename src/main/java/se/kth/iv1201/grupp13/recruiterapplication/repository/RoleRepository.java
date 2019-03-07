@@ -17,10 +17,11 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
      *
      * @param roleName The role name to search for.
      * @return A role with the specified name.
+     * @throws IncorrectResultSizeDataAccessException If more than one role with the specified name was found.
      */
     @Override
     Role save(Role role);  
-    Role findByRoleId(Long roleId);
+    Role findByName(Long roleName);
 
     Role findByName(String applicant);
 }

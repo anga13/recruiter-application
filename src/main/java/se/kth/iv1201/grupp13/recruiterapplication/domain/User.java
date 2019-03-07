@@ -100,7 +100,7 @@ public class User implements UserDTO {
      */
     public void addCompetenceProfile(CompetenceProfile competenceProfile) throws IllegalRecruiterTransactionException {
         if (competenceProfile==null) {
-            throw new IllegalRecruiterTransactionException("Attempt to add an empty competence profile!");
+            throw new IllegalRecruiterTransactionException("Attempt to save an empty competence profile!");
         }
     	competenceProfiles.add(competenceProfile);
     }
@@ -117,7 +117,7 @@ public class User implements UserDTO {
      */
     public void addAvailability(Availability availability) throws IllegalRecruiterTransactionException {
         if (availability==null) {
-            throw new IllegalRecruiterTransactionException("Attempt to add an empty availability!");
+            throw new IllegalRecruiterTransactionException("Attempt to save an empty availability!");
         }
         availabilities.add(availability);
     }

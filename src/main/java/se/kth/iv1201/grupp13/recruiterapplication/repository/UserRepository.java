@@ -23,6 +23,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param username The user name to search for.
      * @param password The password to search for.
      * @return A user with the specified user name and password.
+     * @throws IncorrectResultSizeDataAccessException If more than one user with the specified username and password was found.
      */
     User findByUsernameAndPassword(String username, String password);
 

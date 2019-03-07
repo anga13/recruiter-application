@@ -41,6 +41,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
      *
      * @param user The user to search for.
      * @return A list containing all applications of the specified user.
+     * @throws IncorrectResultSizeDataAccessException If more than one application with the specified user was found.
      */	
     Application findByUser(User user);  
 

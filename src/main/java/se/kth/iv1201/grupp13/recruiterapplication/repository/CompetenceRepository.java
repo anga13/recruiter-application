@@ -18,6 +18,7 @@ public interface CompetenceRepository extends JpaRepository<Competence, Long> {
      *
      * @param competenceName The competence name to search for.
      * @return A competence with the specified name.
+     * @throws IncorrectResultSizeDataAccessException If more than one competence with the specified competence name was found.
      */
     Competence findByName(Long competenceName);
     

@@ -19,6 +19,7 @@ public interface ApprovalStatusRepository extends JpaRepository<ApprovalStatus, 
      *
      * @param name The name to search for.
      * @return ApprovalStatus with the specified name.
+     * @throws IncorrectResultSizeDataAccessException If more than one status with the specified name was found.
      */	   
     ApprovalStatus findByName(String name);
 }
