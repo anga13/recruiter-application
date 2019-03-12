@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Availability;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.Competence;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.CompetenceProfile;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.IllegalRecruiterTransactionException;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Role;
@@ -14,6 +15,7 @@ import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.UserDTO;
 import se.kth.iv1201.grupp13.recruiterapplication.repository.AvailabilityRepository;
 import se.kth.iv1201.grupp13.recruiterapplication.repository.CompetenceProfileRepository;
+import se.kth.iv1201.grupp13.recruiterapplication.repository.CompetenceRepository;
 import se.kth.iv1201.grupp13.recruiterapplication.repository.RoleRepository;
 import se.kth.iv1201.grupp13.recruiterapplication.repository.UserRepository;
 
@@ -36,7 +38,9 @@ public class UserService {
     @Autowired
     private CompetenceProfileRepository competenceProfileRepo;	
     @Autowired
-    private AvailabilityRepository availabilityRepo;	
+    private AvailabilityRepository availabilityRepo;
+    @Autowired
+    private CompetenceRepository competenceRepo;	
 
     /**
      * This is the method that registers user.
@@ -101,5 +105,21 @@ public class UserService {
     public UserDTO createApplicant(UserDTO user) {
        return this.createUser(user.getName(), user.getSurname(), user.getSsn(), user.getEmail(), user.getPassword(), "", user.getUsername());
     }
+
+	public List<User> all() {
+		// TODO Auto-generated method stub
+		return userRepo.findAll();
+	}
+
+	public List<Competence> competences() {
+		// TODO Auto-generated method stub
+		return competenceRepo.findAll();
+	}
+
+	public Competence createCompetence(String name) {
+		// TODO Auto-generated method stub
+		
+		return competenceRepo.save(new Competence(name));
+	}
     
 }

@@ -5,11 +5,16 @@
  */
 package se.kth.iv1201.grupp13.recruiterapplication.presentation;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import se.kth.iv1201.grupp13.recruiterapplication.application.UserService;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.Competence;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
 import se.kth.iv1201.grupp13.recruiterapplication.domain.UserDTO;
 
 /**
@@ -34,4 +39,27 @@ public class UserController {
     public UserDTO createApplicant(@RequestBody UserRequestBody user) {
         return userService.createApplicant(user);
     }
+  
+    /**
+     * Creates a new user with the role of applicant
+     * @param user
+     * @return the created instance
+     */
+    @GetMapping(USER_BASE_URL+"/getUsers")
+    public List<User> getUsers() {
+        return userService.all();
+    }
+    
+    @GetMapping(USER_BASE_URL+"/getCompetences")
+    public List<Competence> getCompetences() {
+        return userService.competences();
+    }
+    
+    @PostMapping(USER_BASE_URL+"/addCompetence")
+    public Competence createCompetence(@RequestBody String name) {
+        return userService.createCompetence(name);
+    }
+    
+    
+    
 }
