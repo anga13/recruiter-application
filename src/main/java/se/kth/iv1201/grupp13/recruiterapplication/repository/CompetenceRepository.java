@@ -1,11 +1,14 @@
 package se.kth.iv1201.grupp13.recruiterapplication.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import se.kth.iv1201.grupp13.recruiterapplication.domain.Competence;
+import se.kth.iv1201.grupp13.recruiterapplication.domain.User;
 
 /**
  * Contains all database access concerning competences.
@@ -23,4 +26,7 @@ public interface CompetenceRepository extends JpaRepository<Competence, Long> {
     
     @Override
     Competence save(Competence competence);  
+    
+    @Override
+    List<Competence> findAll();
 }
